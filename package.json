@@ -1,0 +1,17 @@
+{
+  "name": "asmref",
+  "version": "0.1.0",
+  "description": "Assembly reference for multiple architectures",
+  "main": "asmref.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jaime Peñalba",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "minimist": "^1.1.1",
+    "sqlite3": "^3.0.5",
+    "temp": "^0.8.3",
+    "which": "^1.1.1"
+  }
+}

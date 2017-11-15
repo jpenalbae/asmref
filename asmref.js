@@ -15,7 +15,7 @@ var pagers = ['most', 'less', 'more'];
 
 
 var _opts = {
-    arch: 'x86',
+    arch: 'x86_64',
     opcode: ''
 };
 
@@ -27,7 +27,8 @@ function printHelp()
         cmd = paths[paths.length-1];
     }
     console.log('Usage: ' + cmd + ' [-a arch] mnemonic');
-    console.log('  -a arch: Target platform (x86, arm, any)\n');
+    console.log('  -a arch: Target platform (x86_64, x86, arm, mips, xtensa, any)\n');
+    console.log('Default arch is x86_64\n');
 }
 
 
@@ -46,6 +47,12 @@ function getShortDescription(desc)
     return newdesc.trim().substr(0, 56);
 }
 
+function padTo(word, len)
+{
+    var pad = len - word.length + 1;
+    return word + Array(pad).join(' ');
+}
+
 
 function chooseOperand(rows)
 {
@@ -54,7 +61,7 @@ function chooseOperand(rows)
         var desc = getShortDescription(rows[x].description);
         var plat = rows[x].platform;
         var mnem = rows[x].mnem;
-        console.log('['+x+'] | ' + mnem  + '\t| ' + plat + ' | ' + desc);
+        console.log('['+x+'] | ' + mnem  + '\t| ' + padTo(plat, 6) + ' | ' + desc);
     }
     process.stdout.write("Enter number: ");
 
@@ -123,8 +130,17 @@ if (args.a) {
         case 'x86':
             _opts.arch = 'x86';
             break;
+        case 'x86_64':
+            _opts.arch = 'x86_64';
+            break;
         case 'arm':
             _opts.arch = 'ARM';
+            break;
+        case 'mips':
+            _opts.arch = 'MIPS32';
+            break;
+        case 'xtensa':
+            _opts.arch = 'xtensa';
             break;
         case 'any':
             _opts.arch = 'any';

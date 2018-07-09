@@ -115,7 +115,7 @@ function showResults(text) {
             return -1;
         }
 
-        fs.write(info.fd, text);
+        fs.writeSync(info.fd, text);
         fs.close(info.fd, function(err) {
             proc.execSync(pager + ' ' + info.path, { stdio: 'inherit' });
         });
